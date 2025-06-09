@@ -20,8 +20,7 @@ dash==3.0.4
 dataclasses-json==0.6.7
 decorator==5.2.1
 Deprecated==1.2.18
-diff_gaussian_rasterization @ file:///C:/Users/307-1/TRELLIS/TRELLIS/tmp/extensions/mip-splatting/submodules/diff-gaussian-rasterization
-diffoctreerast @ file:///C:/Users/307-1/TRELLIS/TRELLIS/tmp/extensions/diffoctreerast
+
 Django==5.2.2
 easydict==1.13
 einops==0.8.1
@@ -33,7 +32,7 @@ fastjsonschema==2.21.1
 ffmpy==0.6.0
 filelock==3.13.1
 fire==0.7.0
-flash_attn @ https://github.com/bdashore3/flash-attention/releases/download/v2.7.1.post1/flash_attn-2.7.1.post1+cu124torch2.5.1cxx11abiFALSE-cp310-cp310-win_amd64.whl#sha256=adcba64d82515fb603a1d7346693e11ffe7b6b827528d4dd831fb4b359b2e4e6
+
 Flask==3.0.3
 flatbuffers==25.2.10
 fonttools==4.58.1
@@ -88,7 +87,7 @@ networkx==3.3
 ninja==1.11.1.4
 numba==0.61.2
 numpy==1.26.4
-nvdiffrast @ file:///C:/Users/307-1/TRELLIS/TRELLIS/tmp/extensions/nvdiffrast
+
 onnxruntime==1.22.0
 open3d==0.19.0
 opencv-python-headless==4.11.0.86
@@ -156,7 +155,7 @@ tqdm==4.67.1
 traitlets==5.14.3
 transformers==4.52.4
 trimesh==4.6.11
-triton @ file:///C:/Users/307-1/Downloads/triton-2.1.0-cp310-cp310-win_amd64.whl#sha256=223b123e44b95e148904ab2475e6a6230a013813cb25e80d11f9d6d062b768b8
+
 typer==0.16.0
 typing-inspect==0.9.0
 typing-inspection==0.4.1
@@ -164,9 +163,9 @@ typing_extensions==4.14.0
 tzdata==2025.2
 urllib3==2.4.0
 usd-core==25.5.1
-utils3d @ git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8
+
 uvicorn==0.34.3
-vox2seq @ file:///C:/Users/307-1/TRELLIS/TRELLIS/tmp/extensions/vox2seq
+
 vtk==9.4.2
 warp-lang==1.7.2
 wcwidth==0.2.13
@@ -177,3 +176,55 @@ wrapt==1.17.2
 xatlas==0.0.10
 xformers==0.0.28.post3
 zipp==3.22.0
+# 1) PyTorch, Torchvision, XFormers (CUDA 12.4) 전용 인덱스
+--index-url https://download.pytorch.org/whl/cu124
+torch==2.5.1
+torchvision
+xformers==0.0.28.post3
+
+# 2) 일반 패키지
+pillow
+imageio
+imageio-ffmpeg
+tqdm
+easydict
+opencv-python-headless
+scipy
+ninja
+rembg
+onnxruntime
+trimesh
+xatlas
+pyvista
+pymeshfix
+igraph
+transformers
+
+# 3) Git 저장소에서 직접 설치
+git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8#egg=utils3d
+
+# 4) Flash-Attention 바이너리 휠
+https://github.com/bdashore3/flash-attention/releases/download/v2.7.1.post1/\
+flash_attn-2.7.1.post1+cu124torch2.5.1cxx11abiFALSE-cp310-cp310-win_amd64.whl
+
+# 5) Kaolin (CUDA 12.4) 전용 추가 인덱스
+-f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu124.html
+kaolin
+
+# 6) NVdia Diffrast (nvdiffrast)
+git+https://github.com/NVlabs/nvdiffrast.git#egg=nvdiffrast
+
+# 7) DiffOctreeRast (서브모듈 포함)
+git+https://github.com/JeffreyXiang/diffoctreerast.git#egg=diffoctreerast
+
+# 8) MIP-Splatting의 Diff Gaussian Rasterization 서브모듈
+git+https://github.com/autonomousvision/mip-splatting.git@master\
+#egg=diff-gaussian-rasterization&subdirectory=submodules/diff-gaussian-rasterization
+
+# 9) VOX2Seq (로컬 경로)
+./tmp/extensions/vox2seq
+
+# 10) 기타
+spconv-cu120
+gradio==4.44.1
+gradio_litmodel3d==0.0.1
