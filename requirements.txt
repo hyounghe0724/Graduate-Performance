@@ -1,52 +1,30 @@
 ###############################################################################
-# requirements.txt  – Heroku (Linux CPU) 빌드용 최소 구성
+# FastAPI Gateway – Heroku (Linux CPU) slug-safe deps
 ###############################################################################
 
-########## 빌드 툴 ##########
-setuptools>=61.0
-wheel
-########## 핵심 러untime ##########
-# PyTorch CPU (Heroku는 GPU 없음)
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.5.1
-torchvision==0.20.1
-xformers==0.0.28.post3          # CPU 빌드도 PyPI에 포함
+########## 기본 설정 ##########
+# ❶ 먼저 CPU-전용 PyTorch 휠 저장소를 바라보게 해 두면
+#    torch 포함 다른 패키지를 설치할 때도 GPU 빌드(=거대 slug)를 피할 수 있습니다.
+--index-url https://download.pytorch.org/whl/cpu
+--extra-index-url https://pypi.org/simple      # ← 일반 PyPI Fallback
 
-########## FastAPI 서버 ##########
-fastapi==0.115.12
-uvicorn==0.34.3
-gunicorn==23.0.0
+########## 서버 프레임워크 ##########
+fastapi==0.115.1
+uvicorn[standard]==0.29.0      # uvloop+httptools 포함, Heroku dyno에서도 OK
+gunicorn==21.2.0               # Heroku Recommended WSGI
+python-multipart==0.0.6
+pydantic==2.6.4
+anyio==4.3.0
 aiofiles==23.2.1
-anyio==4.9.0
-pydantic==2.11.5
-python-multipart==0.0.20        # 파일 업로드용 (필요 시)
 
-########## 데이터·모델 처리 ##########
-numpy==1.26.4
-scipy==1.15.3
-pillow==10.4.0
-tqdm==4.67.1
-easydict==1.13
-opencv-python-headless==4.11.0.86
-imageio==2.37.0
-imageio-ffmpeg==0.6.0
-onnxruntime==1.22.0             # CPU 추론 엔진
-trimesh==4.6.11
-xatlas==0.0.10
-pyvista==0.45.2
-pymeshfix==0.17.1
-igraph==0.11.8
-transformers==4.52.4
-huggingface-hub==0.32.4
+########## 메시지 큐 클라이언트 ##########
+redis==5.0.4                   # ⤷ 사용 큐에 맞춰 변경 가능
+rq==1.16.1                     # Celery 대신 경량 rq 예시
+# (RabbitMQ → kombu / aio_pika,  AWS SQS → boto3 등으로 교체)
 
-########## Web UI(선택) ##########
-gradio==4.44.1
-gradio_litmodel3d==0.0.1
-
-########## 시각화·툴(선택) ##########
-matplotlib==3.10.3
-plotly==6.1.2
+########## 관측 가능성 / 로깅 ##########
+tqdm==4.66.4
 rich==14.0.0
 
-
-
+########## 경량 과학 스택 (Optional) ##########
+numpy==1.26.4                  # 간단한 전처리용
