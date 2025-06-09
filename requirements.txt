@@ -4,7 +4,7 @@
 
 ########## 빌드 툴 ##########
 setuptools>=61.0
-
+wheel
 ########## 핵심 러untime ##########
 # PyTorch CPU (Heroku는 GPU 없음)
 --extra-index-url https://download.pytorch.org/whl/cpu
@@ -48,11 +48,7 @@ matplotlib==3.10.3
 plotly==6.1.2
 rich==14.0.0
 
-########## GitHub 패키지 ##########
-git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8#egg=utils3d
-git+https://github.com/NVlabs/nvdiffrast.git#egg=nvdiffrast
-git+https://github.com/JeffreyXiang/diffoctreerast.git#egg=diffoctreerast
-git+https://github.com/autonomousvision/mip-splatting.git@master#egg=diff-gaussian-rasterization&subdirectory=submodules/diff-gaussian-rasterization
+
 
 ########## 로컬 확장(프로젝트 내부 경로) ##########
 ./tmp/extensions/vox2seq
