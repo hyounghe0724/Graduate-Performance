@@ -4,7 +4,6 @@
 
 ########## 빌드 툴 ##########
 setuptools>=61.0
-wheel
 
 ########## 핵심 러untime ##########
 # PyTorch CPU (Heroku는 GPU 없음)
