@@ -63,12 +63,6 @@ project.fragment.lock.json
 artifacts/
 
 #project files
-/trellis
-/tmp
-/extensions
-/dataset_toolkits
-/configs
-/assets
 
 
 # ASP.NET Scaffolding
