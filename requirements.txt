@@ -16,7 +16,7 @@ python-multipart==0.0.6
 pydantic==2.6.4
 anyio==4.3.0
 aiofiles==23.2.1
-
+Image
 ########## 메시지 큐 클라이언트 ##########
 redis==5.0.4                   # ⤷ 사용 큐에 맞춰 변경 가능
 rq==1.16.1                     # Celery 대신 경량 rq 예시
