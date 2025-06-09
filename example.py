@@ -97,3 +97,4 @@ async def GenerateModel(pil_image: Image.Image, user_email: str, start_time: flo
     imageio.mimsave(video_path, video, fps=30)
 
     return glb_path, video_path
+
